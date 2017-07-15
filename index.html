@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz App</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="styles/app_styles.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Welcome to my quiz app!</h1>
+            <p>The main purpose of this app is to try out different frontend technologies and thus help me learn them.</p>
+            <p>Secondly, this is also a quiz which can be played :-)</p>
+        </header>
+        <section class="prepare">
+            <h2>Let's get started ...</h2>
+            <form>
+                <p>Please select your quiz category and tell me how many questions you would like to be asked.</p>
+                <label for="select_category">Category: </label>
+                <select id="select_category" name="select_category">
+                    <option value="0">Any</option>
+                </select>
+                <label for="select_number_questions" class="label_select_number_questions">Number of Questions: </label>
+                <select id="select_number_questions" name="select_number_questions">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+                <input class="submit_prepare button" id="submit_prepare" name="submit_prepare" type="submit" value="Go!" />
+            </form>
+        </section>
+    </main>
+    <script type="application/javascript" src="scripts/app_script.js"></script>
+</body>
+</html>

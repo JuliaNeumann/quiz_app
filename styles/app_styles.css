@@ -1,0 +1,53 @@
+/*colors: http://paletton.com/#uid=13i0u0kbRt14+E48dwffUpTkImm*/
+body {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: #669999;
+}
+
+h1, h2 {
+    font-family: 'Amatic SC', cursive;
+    color: #052929;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+section {
+    margin-top: 40px;
+}
+
+.label_select_number_questions, .submit_prepare {
+    margin-left: 20px;
+}
+
+.button {
+    font-family: 'Amatic SC', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    background: none;
+    background-color: #052929;
+    border: 0;
+    color: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 5px 10px;
+    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+}
+
+.button:hover,
+.button:active,
+.button:focus {
+    background-color: #0D4D4D;
+}
