@@ -27,9 +27,10 @@ function handlePrepareSubmit() {
         var amount = selectNumberQuestions.options[selectNumberQuestions.selectedIndex].value;
         var category = selectCategories.options[selectCategories.selectedIndex].value;
         var categorySnippet = (category === '0') ? '' : '&category=' + category;
-        var requestRoute = 'api.php?amount=' + amount + categorySnippet;
+        var requestRoute = 'api.php?amount=' + amount + '&type=multiple' + categorySnippet;
         makeJsonRequest(requestRoute, function onSuccess(jsonQuestions) {
-           console.log(jsonQuestions);
+            var event = new CustomEvent('startQuiz', {detail: jsonQuestions.results});
+            document.dispatchEvent(event);
         });
     });
 }
