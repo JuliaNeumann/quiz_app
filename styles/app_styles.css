@@ -2,6 +2,7 @@
 body {
     font-family: 'Raleway', sans-serif;
     color: white;
+    font-size: 18px;
 }
 
 main {
@@ -24,13 +25,14 @@ section {
     margin-top: 40px;
 }
 
-.label_select_number_questions, .submit_prepare {
-    margin-left: 20px;
+.inline_wrapper {
+    display: inline-block;
+    margin-right: 20px;
 }
 
 .button {
     font-family: 'Amatic SC', cursive;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     background: none;
     background-color: #052929;
@@ -67,4 +69,12 @@ section {
 .feedback {
     border: 2px solid #052929;
     padding: 5px;
+}
+
+.correct {
+    color: #052929;
+}
+
+.incorrect {
+    color: darkred;
 }

@@ -1,6 +1,9 @@
 var api_base_url = 'https://opentdb.com/';
 var selectCategories = document.getElementById('select_category');
 var selectNumberQuestions = document.getElementById('select_number_questions');
+var prepareSection = document.getElementById('prepare_section');
+var questionSection = document.getElementById('question_section');
+var endSection = document.getElementById('end_section');
 
 function makeJsonRequest(api_route, successCallback, errorCallback) {
     var xhr = new XMLHttpRequest();
@@ -51,6 +54,25 @@ function buildCategories() {
 
 }
 
+function waitForEndOfQuiz() {
+    document.addEventListener('endQuiz', function onStartQuiz(event) {
+        document.getElementById('score').innerHTML = event.detail.score;
+        document.getElementById('amount').innerHTML = event.detail.amount;
+        questionSection.className += ' hidden';
+        endSection.className = '';
+    })
+}
+
+function waitForPlayAgain() {
+    document.getElementById('play_again').addEventListener('click', function onStartQuiz(event) {
+        event.preventDefault();
+        endSection.className += ' hidden';
+        prepareSection.className = '';
+    })
+}
+
 // INIT APP
 buildCategories();
 handlePrepareSubmit();
+waitForEndOfQuiz();
+waitForPlayAgain();

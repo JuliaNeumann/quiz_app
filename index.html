@@ -17,18 +17,24 @@
             <h2>Let's get started ...</h2>
             <form>
                 <p>Please select your quiz category and tell me how many questions you would like to be asked.</p>
-                <label for="select_category">Category: </label>
-                <select id="select_category" name="select_category">
-                    <option value="0">Any</option>
-                </select>
-                <label for="select_number_questions" class="label_select_number_questions">Number of Questions: </label>
-                <select id="select_number_questions" name="select_number_questions">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                </select>
-                <input class="submit_prepare button" id="submit_prepare" name="submit_prepare" type="submit" value="Go!" />
+                <p class="inline_wrapper">
+                    <label for="select_category">Category: </label>
+                    <select id="select_category" name="select_category">
+                        <option value="0">Any</option>
+                    </select>
+                </p>
+                <p class="inline_wrapper">
+                    <label for="select_number_questions">Number of Questions: </label>
+                    <select id="select_number_questions" name="select_number_questions">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </p>
+                <p>
+                    <input class="submit_prepare button" id="submit_prepare" name="submit_prepare" type="submit" value="Go!" />
+                </p>
             </form>
         </section>
         <section class="hidden" id="question_section">
@@ -38,7 +44,17 @@
                 <p id="question_text"></p>
                 <p id="answers"></p>
                 <p>
-                    <input class="submit_question button" id="submit_question" name="submit_question" type="submit" value="Check" />
+                    <input class="button" id="submit_question" name="submit_question" type="submit" value="Check" />
+                    <input class="button hidden" id="next_question" name="next_question" type="submit" value="Continue" />
+                </p>
+            </form>
+        </section>
+        <section class="hidden" id="end_section">
+            <h2>That's it</h2>
+            <p>Your score: You answered <span id="score"></span> out of <span id="amount"></span> questions correctly.</p>
+            <form>
+                <p>
+                    <input class="button" id="play_again" name="play_again" type="submit" value="Play again!" />
                 </p>
             </form>
         </section>
