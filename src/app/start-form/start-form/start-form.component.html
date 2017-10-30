@@ -1,0 +1,19 @@
+<form #form="ngForm" (ngSubmit)="fetchQuestions(form.value)">
+  <p>Please select your quiz category and tell me how many questions you would like to be asked.</p>
+  <p class="inline_wrapper">
+    <label for="selectedCategory">Category: </label>
+    <select id="selectedCategory" name="selectedCategory" [(ngModel)]="selectedCategory">
+      <option value="0">Any</option>
+      <option *ngFor="let category of categories;" value="{{category.id}}">{{category.name}}</option>
+    </select>
+  </p>
+  <p class="inline_wrapper">
+    <label for="selectedNumber">Number of Questions: </label>
+    <select id="selectedNumber" name="selectedNumber" [(ngModel)]="selectedNumber">
+      <option *ngFor="let number of optionsNumberOfQuestions;" value="{{number}}">{{number}}</option>
+    </select>
+  </p>
+  <p>
+    <input class="submit_prepare button" id="submit_prepare" name="submit_prepare" type="submit" value="Go!" />
+  </p>
+</form>
