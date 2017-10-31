@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../shared/categories.service';
 import { Category } from '../shared/category';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'quiz-start-form',
@@ -14,19 +15,20 @@ export class StartFormComponent implements OnInit {
   public selectedCategory: number;
   public selectedNumber: number;
 
-  constructor(private categoriesService: CategoriesService) {
-    this.optionsNumberOfQuestions = Array(4).fill(0).map((value, index) => (index + 1) * 5);
-    this.selectedCategory = 0;
-    this.selectedNumber = 5;
-  }
+  constructor(private categoriesService: CategoriesService,
+    private router: Router, private route: ActivatedRoute) {
+      this.optionsNumberOfQuestions = Array(4).fill(0).map((value, index) => (index + 1) * 5);
+      this.selectedCategory = 0;
+      this.selectedNumber = 5;
+    }
 
   ngOnInit() {
     this.categoriesService.getCategories()
         .subscribe(categoriesResponse => this.categories = categoriesResponse);
   }
 
-  fetchQuestions(formInput) {
-    console.log(formInput);
+  startQuiz(formInput) {
+    this.router.navigate([`/${formInput.selectedCategory}/${formInput.selectedNumber}`], {relativeTo: this.route});
   }
 
 }
