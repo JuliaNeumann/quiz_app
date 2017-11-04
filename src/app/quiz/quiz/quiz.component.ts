@@ -10,6 +10,8 @@ import { HeadingService } from '../../shared/heading.service';
 })
 export class QuizComponent implements OnInit {
 
+  currentQuestion: any;
+
   constructor(private quizService: QuizService,
               private headingService: HeadingService,
               private route: ActivatedRoute) { }
@@ -22,6 +24,7 @@ export class QuizComponent implements OnInit {
           this.quizService.getQuestions(params.category, params.numberOfQuestions)
               .subscribe(result => {
                 console.log(result);
+                this.currentQuestion = result[0];
               });
         });
   }

@@ -10,6 +10,6 @@ export class QuizService {
   getQuestions(category, numberOfQuestions) {
     let url = `${this.restRoot}&amount=${numberOfQuestions}`;
     url = (category === '0') ? url : `${url}&category=${category}`;
-    return this.http.get(url);
+    return this.http.get(url).map(res => (res as any).results);
   }
 }
