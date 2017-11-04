@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { QuizService } from '../shared/quiz.service';
 import { ActivatedRoute } from '@angular/router';
+import { HeadingService } from '../../shared/heading.service';
 
 @Component({
   selector: 'quiz-quiz',
@@ -9,9 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QuizComponent implements OnInit {
 
-  constructor(private quizService: QuizService, private route: ActivatedRoute) { }
+  constructor(private quizService: QuizService,
+              private headingService: HeadingService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.headingService.emitChange('Question 1');
     this.route
         .params
         .subscribe((params: {category: string, numberOfQuestions: string}) => {

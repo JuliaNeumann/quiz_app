@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartFormModule } from './start-form/start-form.module';
 import { QuizModule } from './quiz/quiz.module';
+import { HeadingService } from './shared/heading.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { QuizModule } from './quiz/quiz.module';
     StartFormModule,
     QuizModule
   ],
-  providers: [],
+  providers: [HeadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

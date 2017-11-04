@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HeadingService } from './shared/heading.service';
 
 @Component({
   selector: 'quiz-root',
@@ -6,7 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title : string = 'Let\'s get started ...' ;
+  heading : string = '' ;
 
-
+  constructor(private headingService: HeadingService) {
+    headingService.changeEmitted$.subscribe(
+        newHeading => this.heading = newHeading
+    );
+  }
 }
