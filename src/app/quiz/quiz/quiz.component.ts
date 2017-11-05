@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizService } from '../shared/quiz.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeadingService } from '../../shared/heading.service';
+import { Question } from '../shared/question';
+import { UtilsService } from '../../shared/utils.service';
 
 @Component({
   selector: 'quiz-quiz',
@@ -10,23 +12,52 @@ import { HeadingService } from '../../shared/heading.service';
 })
 export class QuizComponent implements OnInit {
 
-  currentQuestion: any;
+  questions: Question[] = [];
+  currentQuestion: Question;
+  score: number = 0;
 
   constructor(private quizService: QuizService,
               private headingService: HeadingService,
-              private route: ActivatedRoute) { }
+              private utilsService: UtilsService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
-    this.headingService.emitChange('Question 1');
     this.route
         .params
         .subscribe((params: {category: string, numberOfQuestions: string}) => {
           this.quizService.getQuestions(params.category, params.numberOfQuestions)
               .subscribe(result => {
-                console.log(result);
-                this.currentQuestion = result[0];
+                  this.processQuestions(result);
               });
         });
+  }
+
+  processQuestions(result) {
+    let that = this;
+    result.forEach(function(rawQuestion, index) {
+        that.questions.push({
+            id: index + 1,
+            text: rawQuestion.question,
+            randomAnswers : that.utilsService.shuffle([... rawQuestion.incorrect_answers, rawQuestion.correct_answer]),
+            correctAnswer: rawQuestion.correct_answer
+        });
+    });
+    this.setCurrentQuestion(0);
+  }
+
+  provideNextQuestion(increaseScore: number) {
+    this.score += increaseScore;
+    if (this.currentQuestion.id === this.questions.length) {
+        this.router.navigate([`/end/${this.score}/${this.questions.length}`], {relativeTo: this.route});
+        return;
+    }
+    this.setCurrentQuestion(this.currentQuestion.id);
+  }
+
+  setCurrentQuestion(index: number) {
+      this.headingService.emitChange('Question ' + (index + 1));
+      this.currentQuestion = this.questions[index];
   }
 
 }

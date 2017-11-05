@@ -1,0 +1,20 @@
+.answer_wrapper {
+    margin: 10px;
+}
+
+.answer_wrapper:last-child {
+    margin-bottom: 30px;
+}
+
+.feedback {
+    border: 2px solid #052929;
+    padding: 5px;
+}
+
+.correct {
+    color: #052929;
+}
+
+.incorrect {
+    color: darkred;
+}
