@@ -8,7 +8,7 @@
                 <select id="select_category" name="select_category" v-model="selectedCategory">
                     <option value="0">Any</option>
                     <option v-for="category in categories" :key="category.id" :value="category.id">
-                        {{ category.name }}        
+                        {{ category.name }}
                     </option>
                 </select>
             </p>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import { getCategories, getQuestions } from '../services/apiService';
+    import { getCategories } from '../services/apiService';
 
     export default {
         name: 'StartQuiz',
@@ -42,8 +42,13 @@
         },
         methods: {
             async submit() {
-                const quiz = await getQuestions(this.selectedCategory, this.numQuestions);
-                console.log(quiz);     
+                this.$router.push({
+                    name: 'play',
+                    params: {
+                        category: this.selectedCategory,
+                        number: this.numQuestions
+                    }
+                });
             }
         },
         async mounted() {

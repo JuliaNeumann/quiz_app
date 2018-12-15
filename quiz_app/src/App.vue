@@ -7,7 +7,7 @@
             <p>Secondly, this is also a quiz which can be played :-)</p>
         </header>
         <main>
-            <start-quiz />
+            <router-view/>
         </main>
         <footer>
             &copy; Julia Neumann, 2018
@@ -15,17 +15,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import StartQuiz from './components/StartQuiz.vue'
-
-export default {
-  name: 'app',
-  components: {
-    StartQuiz
-  }
-}
-</script>
 
 <style>
   /*colors: http://paletton.com/#uid=13i0u0kbRt14+E48dwffUpTkImm*/
