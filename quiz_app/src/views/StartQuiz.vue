@@ -58,32 +58,10 @@
 </script>
 
 <style>
+    @import '../assets/button.css';
+
     .inline_wrapper {
         display: inline-block;
         margin-right: 20px;
-    }
-
-    .button {
-        font-family: 'Amatic SC', cursive;
-        font-size: 24px;
-        font-weight: bold;
-        background: none;
-        background-color: #052929;
-        border: 0;
-        color: inherit;
-        line-height: normal;
-        overflow: visible;
-        padding: 5px 10px;
-        -webkit-appearance: button; /* for input */
-        -webkit-user-select: none; /* for button */
-        -moz-user-select: none;
-        -ms-user-select: none;
-        cursor: pointer;
-    }
-
-    .button:hover,
-    .button:active,
-    .button:focus {
-        background-color: #0D4D4D;
     }
 </style>
