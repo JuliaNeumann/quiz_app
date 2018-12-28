@@ -16,18 +16,28 @@
                     <input type="radio"
                            name="answers"
                            :id="`answer_${index}`"
-                           :value="option" />
+                           v-model="selectedAnswer"
+                           :value="option"/>
                     &nbsp;
                     <label :for="`answer_${index}`"
+                           :class="getLabelClass(option)"
                            v-html="option">
                     </label>
                 </span>
             </p>
             <p>
-                <input class="button"
+                <input v-if="asking"
+                       class="button"
                        name="submit_question"
                        type="submit"
-                       :value="asking ? 'Check' : 'Continue'" />
+                       value="Check"
+                       @click.prevent="evaluate"/>
+                <input v-else
+                       class="button"
+                       name="continue_question"
+                       type="submit"
+                       value="Continue"
+                       @click.prevent="goOn"/>
             </p>
         </form>
     </section>
@@ -44,7 +54,9 @@
                 questions: [],
                 currentQuestion: 0,
                 feedback: '',
-                asking: true
+                asking: true,
+                selectedAnswer: '',
+                score: 0
             }
         },
         computed: {
@@ -56,6 +68,47 @@
                     return options;
                 }
                 return [];
+            }
+        },
+        methods: {
+            evaluate() {
+                if (this.selectedAnswer === '' || this.selectedAnswer === undefined) {
+                    this.feedback = 'Please select an answer!';
+                    return;
+                }
+                this.asking = false;
+                if (this.selectedAnswer === this.questions[this.currentQuestion].correct_answer) {
+                    this.feedback = 'Correct!!';
+                    this.score++;
+                    return;
+                } 
+                this.feedback = 'Incorrect :-('; 
+            },
+            goOn() {
+                this.feedback = '';
+                this.asking = true;
+                if (this.currentQuestion < (this.questions.length - 1)) {
+                    this.currentQuestion++;
+                    return;
+                }
+                this.$router.push({
+                    name: 'end',
+                    params: {
+                        score: this.score,
+                        number: this.questions.length
+                    }
+                });
+            },
+            getLabelClass(option) {
+                if (!this.asking) {
+                    if (option === this.questions[this.currentQuestion].correct_answer) {
+                        return 'correct';
+                    }
+                    if (option === this.selectedAnswer) {
+                        return 'incorrect';
+                    }
+                }
+                return '';
             }
         },
         async mounted() {
