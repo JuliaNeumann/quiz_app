@@ -7,6 +7,7 @@
     </p>
   </section>
 </template>
+
 <script>
   export default {
     name: 'EndQuiz',
@@ -22,3 +23,7 @@
     }
   }
 </script>
+
+<style scoped>
+    @import '../assets/button.css';
+</style>
