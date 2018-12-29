@@ -1,5 +1,3 @@
-# WORK IN PROGRESS
-
 # QuizApp
 
 This is a small quiz app which I created for the purpose of helping me try out different frontend technologies. 
@@ -9,7 +7,7 @@ My goal was to provide myself with a small, simple app which I can use to learn 
 
 The app uses questions provided by https://opentdb.com/.
 
-
+# Angular Version
 
 This version of the project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.4.
 
