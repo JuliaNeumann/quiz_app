@@ -1,3 +1,5 @@
+import { startQuizOnLoad, waitForAnswer, waitForNextQuestion } from "./question";
+
 var api_base_url = 'https://opentdb.com/';
 var selectCategories = document.getElementById('select_category');
 var selectNumberQuestions = document.getElementById('select_number_questions');
@@ -76,3 +78,6 @@ buildCategories();
 handlePrepareSubmit();
 waitForEndOfQuiz();
 waitForPlayAgain();
+startQuizOnLoad();
+waitForNextQuestion();
+waitForAnswer();

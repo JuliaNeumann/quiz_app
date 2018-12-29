@@ -10,7 +10,7 @@ var nextQuestionBtn = document.getElementById('next_question');
 var questionNumber = document.getElementById('question_number');
 var score = 0;
 
-function startQuizOnLoad() {
+export function startQuizOnLoad() {
     document.addEventListener('startQuiz', function onStartQuiz(event) {
         questions = event.detail;
         currentQuestionIndex = 0;
@@ -68,7 +68,7 @@ function displayAnswer(answer, index) {
     answers.appendChild(wrapper);
 }
 
-function waitForAnswer() {
+export function waitForAnswer() {
     var submitBtn = document.getElementById('submit_question');
     submitBtn.addEventListener('click', function onClickSubmit(event) {
         event.preventDefault();
@@ -100,7 +100,7 @@ function markAnswers() {
     }
 }
 
-function waitForNextQuestion() {
+export function waitForNextQuestion() {
     nextQuestionBtn.addEventListener('click', function onClickSubmit(event) {
         event.preventDefault();
         currentQuestionIndex++;
@@ -110,8 +110,3 @@ function waitForNextQuestion() {
         askNextQuestion();
     })
 }
-
-//INIT QUESTION HANDLING
-startQuizOnLoad();
-waitForAnswer();
-waitForNextQuestion();
