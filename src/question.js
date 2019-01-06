@@ -10,14 +10,14 @@ var nextQuestionBtn = document.getElementById('next_question');
 var questionNumber = document.getElementById('question_number');
 var score = 0;
 
-export function startQuizOnLoad() {
-    document.addEventListener('startQuiz', function onStartQuiz(event) {
-        questions = event.detail;
-        currentQuestionIndex = 0;
-        prepareSection.className += ' hidden';
-        questionSection.className = '';
-        askNextQuestion();
-    })
+export function startQuizOnLoad(questionData) {
+    waitForNextQuestion();
+    waitForAnswer();
+    questions = questionData;
+    currentQuestionIndex = 0;
+    prepareSection.className += ' hidden';
+    questionSection.className = '';
+    askNextQuestion();
 }
 
 function askNextQuestion() {
@@ -68,7 +68,7 @@ function displayAnswer(answer, index) {
     answers.appendChild(wrapper);
 }
 
-export function waitForAnswer() {
+function waitForAnswer() {
     var submitBtn = document.getElementById('submit_question');
     submitBtn.addEventListener('click', function onClickSubmit(event) {
         event.preventDefault();
@@ -100,7 +100,7 @@ function markAnswers() {
     }
 }
 
-export function waitForNextQuestion() {
+function waitForNextQuestion() {
     nextQuestionBtn.addEventListener('click', function onClickSubmit(event) {
         event.preventDefault();
         currentQuestionIndex++;

@@ -1,5 +1,3 @@
-import { startQuizOnLoad, waitForAnswer, waitForNextQuestion } from "./question";
-
 var api_base_url = 'https://opentdb.com/';
 var selectCategories = document.getElementById('select_category');
 var selectNumberQuestions = document.getElementById('select_number_questions');
@@ -34,8 +32,9 @@ function handlePrepareSubmit() {
         var categorySnippet = (category === '0') ? '' : '&category=' + category;
         var requestRoute = 'api.php?amount=' + amount + '&type=multiple' + categorySnippet;
         makeJsonRequest(requestRoute, function onSuccess(jsonQuestions) {
-            var event = new CustomEvent('startQuiz', {detail: jsonQuestions.results});
-            document.dispatchEvent(event);
+            import(/* webpackChunkName: "question" */ "./question").then(question => {
+                question.startQuizOnLoad(jsonQuestions.results);
+            });
         });
     });
 }
@@ -78,6 +77,3 @@ buildCategories();
 handlePrepareSubmit();
 waitForEndOfQuiz();
 waitForPlayAgain();
-startQuizOnLoad();
-waitForNextQuestion();
-waitForAnswer();
