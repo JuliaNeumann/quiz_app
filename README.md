@@ -10,7 +10,7 @@ The app uses questions provided by https://opentdb.com/.
 
 # Webpack 4 Version
 
-This version uses Webpack 4 for bundling.
+This version uses Webpack 4 for bundling and is highly inspired by [this sitepoint tutorial](https://www.sitepoint.com/beginners-guide-webpack-module-bundling).
 
 ## Project setup
 
