@@ -1,3 +1,5 @@
+import '../styles/app_styles.css';
+
 var api_base_url = 'https://opentdb.com/';
 var selectCategories = document.getElementById('select_category');
 var selectNumberQuestions = document.getElementById('select_number_questions');
