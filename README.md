@@ -8,8 +8,8 @@ My goal was to provide myself with a small, simple app which I can use to learn 
 The app uses questions provided by https://opentdb.com/.
 
 
-# Vue.js Version
-This version is implemented using Vue.js and Vue Router.
+# UML Version
+This version is the same as the Vue version, with an added UML diagram that documents the design of the Vue app.
 
 ## Project setup
 ```
