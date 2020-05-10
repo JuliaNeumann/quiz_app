@@ -1,0 +1,16 @@
+.app {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 40px;
+  background-color: #669999;
+}
+
+.app__header {
+  margin-bottom: 40px;
+}
+
+.app__footer {
+  text-align: right;
+  font-size: 16px;
+  color: #052929;
+}
