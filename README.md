@@ -6,3 +6,11 @@ I wrote the baseline version as quickly as possible using only plain JavaScript,
 My goal was to provide myself with a small, simple app which I can use to learn and try out different frontend technologies, so I'll be adding branches with refactored versions of the same app using new technologies.
 
 The app uses questions provided by https://opentdb.com/.
+
+## Available Versions:
+
+- Angular
+- Vue.js (+ Vue Router)
+- Webpack 4
+- UML
+- React (WINP)
