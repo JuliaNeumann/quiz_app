@@ -1,10 +1,34 @@
 import React from "react";
 import "./Intro.css";
+import { fetchCategories } from "../services/api";
+import config from "../services/config";
 
 class Intro extends React.Component {
-  render() {
-    const optionsNumQuestions = [5, 10, 15, 20];
+  constructor(props) {
+    super(props);
+    this.state = {
+      categories: [],
+      selectedCategory: 0,
+      selectedNumQuestions: config.optionsNumQuestions[0],
+    };
 
+    this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    this.handleNumQuestionsChange = this.handleNumQuestionsChange.bind(this);
+  }
+
+  async componentDidMount() {
+    this.setState({ categories: await fetchCategories() });
+  }
+
+  handleCategoryChange(event) {
+    this.setState({ selectedCategory: parseInt(event.target.value) });
+  }
+
+  handleNumQuestionsChange(event) {
+    this.setState({ selectedNumQuestions: parseInt(event.target.value) });
+  }
+
+  render() {
     return (
       <section className="intro">
         <h2>Let's get started ...</h2>
@@ -14,15 +38,32 @@ class Intro extends React.Component {
             would like to be asked.
           </p>
           <p className="intro__inline-wrapper">
-            <label htmlFor="select_category">Category: </label>
-            <select id="select_category" name="select_category">
+            <label htmlFor="select_category">Category:&nbsp;</label>
+            <select
+              id="select_category"
+              name="select_category"
+              value={this.state.selectedCategory}
+              onChange={this.handleCategoryChange}
+            >
               <option value="0">Any</option>
+              {this.state.categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
             </select>
           </p>
           <p className="intro__inline-wrapper">
-            <label htmlFor="select_number_questions">Number of Questions: </label>
-            <select id="select_number_questions" name="select_number_questions">
-              {optionsNumQuestions.map((numOption) => (
+            <label htmlFor="select_number_questions">
+              Number of Questions:&nbsp;
+            </label>
+            <select
+              id="select_number_questions"
+              name="select_number_questions"
+              value={this.state.selectedNumQuestions}
+              onChange={this.handleNumQuestionsChange}
+            >
+              {config.optionsNumQuestions.map((numOption) => (
                 <option key={numOption} value={numOption}>
                   {numOption}
                 </option>
