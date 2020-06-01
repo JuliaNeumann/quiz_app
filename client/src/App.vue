@@ -10,7 +10,7 @@
             <router-view/>
         </main>
         <footer>
-            &copy; Julia Neumann, 2018
+            &copy; Julia Neumann, 2020
         </footer>
     </div>
   </div>

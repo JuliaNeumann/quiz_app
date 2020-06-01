@@ -51,7 +51,7 @@
                 });
             }
         },
-        async mounted() {
+        async created() {
             this.categories = await getCategories();
         }
     }
