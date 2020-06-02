@@ -1,5 +1,6 @@
 package com.example.quiz.controller
 
+import com.example.quiz.models.AggregatedUserSubmissions
 import com.example.quiz.models.Submission
 import com.example.quiz.repository.SubmissionRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,4 +16,8 @@ class SubmissionController(@Autowired private val submissionRepository: Submissi
 
     @PostMapping("")
     fun createSubmission(@Valid @RequestBody submission: Submission) : Submission = submissionRepository.save(submission)
+
+    @GetMapping("/aggregated")
+    // TODO: get by username
+    fun getAggregatedSubmission() : AggregatedUserSubmissions = AggregatedUserSubmissions("foo", submissionRepository.findAll())
 }
