@@ -1,6 +1,6 @@
 import React from "react";
 import "./Intro.css";
-import { fetchCategories } from "../services/api";
+import { fetchCategories, fetchQuestions } from "../services/api";
 import config from "../services/config";
 
 class Intro extends React.Component {
@@ -14,6 +14,7 @@ class Intro extends React.Component {
 
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleNumQuestionsChange = this.handleNumQuestionsChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -26,6 +27,16 @@ class Intro extends React.Component {
 
   handleNumQuestionsChange(event) {
     this.setState({ selectedNumQuestions: parseInt(event.target.value) });
+  }
+
+  async handleSubmit(event) {
+    event.preventDefault();
+    const questions = await fetchQuestions(this.state.selectedCategory, this.state.selectedNumQuestions);
+    if (Array.isArray(questions) && questions.length) {
+      this.props.handleQuestions(questions);
+    } else {
+      alert("Something went wrong during requesting questions.");
+    }
   }
 
   render() {
@@ -77,6 +88,7 @@ class Intro extends React.Component {
               name="submit_prepare"
               type="submit"
               value="Go!"
+              onClick={this.handleSubmit}
             />
           </p>
         </form>
