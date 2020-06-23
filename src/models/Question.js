@@ -3,9 +3,10 @@ export default class Question {
     this.text = text;
     this.correct = correct;
     this.incorrect = incorrect;
+    this.options = this._createRandomisedOptions();
   }
 
-  getOptions() {
+  _createRandomisedOptions() {
     let options = [this.correct, ...this.incorrect];
     const numOptions = options.length;
     let randomOptions = [];

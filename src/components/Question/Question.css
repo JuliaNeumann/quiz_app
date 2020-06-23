@@ -1,0 +1,21 @@
+.question__answers {
+    list-style: none;
+    padding: 0;
+}
+
+.question__answer:not(.question__answer--disabled) {
+    cursor: pointer;
+}
+
+.question__answer--correct {
+    color: #052929;
+}
+
+.question__answer--incorrect {
+    color: darkred;
+}
+
+.question__feedback {
+    border: 2px solid #052929;
+    padding: 5px;
+}

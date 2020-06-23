@@ -1,27 +1,30 @@
 import React from "react";
-import "./AskQuestion.css";
+import "./Question.css";
 
-class AskQuestion extends React.Component {
+const initialState = {
+  isAnswered: false,
+  isCorrect: false,
+  selectedAnswer: "",
+};
+
+class Question extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      options: this.props.question.getOptions(),
-      isAnswered: false,
-      selectedAnswer: "",
-      isCorrect: false,
-    };
+    this.state = initialState;
     this.getAnswerClass = this.getAnswerClass.bind(this);
     this.handleAnswerChange = this.handleAnswerChange.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
+    this.continue = this.continue.bind(this);
   }
 
   getAnswerClass(option) {
-    let className = "answer";
+    let className = "question__answer";
     if (this.state.isAnswered) {
+      className += " question__answer--disabled";
       if (this.props.question.checkAnswer(option)) {
-        className += " correct";
+        className += " question__answer--correct";
       } else if (this.state.selectedAnswer === option) {
-        className += " incorrect";
+        className += " question__answer--incorrect";
       }
     }
     return className;
@@ -45,10 +48,23 @@ class AskQuestion extends React.Component {
     });
   }
 
+  continue(event) {
+    event.preventDefault();
+    this.props.handleAnswer(this.state.isCorrect);
+    this.setState(initialState);
+  }
+
   render() {
     let button;
     if (this.state.isAnswered) {
-      button = <input name="next_question" type="submit" value="Continue" />;
+      button = (
+        <input
+          name="next_question"
+          type="submit"
+          value="Continue"
+          onClick={this.continue}
+        />
+      );
     } else {
       button = (
         <input
@@ -65,13 +81,13 @@ class AskQuestion extends React.Component {
         <h2>Question {this.props.index}</h2>
         <form>
           {this.state.isAnswered && (
-            <p className="feedback">
+            <p className="question__feedback">
               {this.state.isCorrect ? "Correct!!" : "Incorrect :("}
             </p>
           )}
           <p>{this.props.question.text}</p>
-          <ul className="answers">
-            {this.state.options.map((option) => {
+          <ul className="question__answers">
+            {this.props.question.options.map((option) => {
               return (
                 <li key={option}>
                   <label className={this.getAnswerClass(option)}>
@@ -96,4 +112,4 @@ class AskQuestion extends React.Component {
   }
 }
 
-export default AskQuestion;
+export default Question;

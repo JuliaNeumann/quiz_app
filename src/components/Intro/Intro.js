@@ -1,13 +1,12 @@
 import React from "react";
 import "./Intro.css";
-import { fetchCategories, fetchQuestions } from "../services/api";
-import config from "../services/config";
+import { fetchQuestions } from "../../services/api";
+import config from "../../services/config";
 
 class Intro extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: [],
       selectedCategory: 0,
       selectedNumQuestions: config.optionsNumQuestions[0],
     };
@@ -15,10 +14,6 @@ class Intro extends React.Component {
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleNumQuestionsChange = this.handleNumQuestionsChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async componentDidMount() {
-    this.setState({ categories: await fetchCategories() });
   }
 
   handleCategoryChange(event) {
@@ -31,7 +26,10 @@ class Intro extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    const questions = await fetchQuestions(this.state.selectedCategory, this.state.selectedNumQuestions);
+    const questions = await fetchQuestions(
+      this.state.selectedCategory,
+      this.state.selectedNumQuestions
+    );
     if (Array.isArray(questions) && questions.length) {
       this.props.handleQuestions(questions);
     } else {
@@ -57,7 +55,7 @@ class Intro extends React.Component {
               onChange={this.handleCategoryChange}
             >
               <option value="0">Any</option>
-              {this.state.categories.map((category) => (
+              {this.props.categories.map((category) => (
                 <option key={category.id} value={category.id}>
                   {category.name}
                 </option>
