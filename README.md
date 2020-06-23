@@ -13,5 +13,5 @@ The app uses questions provided by https://opentdb.com/.
 - Vue.js (+ Vue Router)
 - Webpack 4
 - UML
-- React (WINP)
+- React
 - Spring Boot + Kotlin (WINP)
