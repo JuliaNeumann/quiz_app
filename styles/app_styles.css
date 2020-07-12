@@ -75,6 +75,8 @@ footer {
 .feedback {
     border: 2px solid #052929;
     padding: 5px;
+    flex-grow: 1;
+    margin-left: 5px;
 }
 
 .correct {
@@ -83,4 +85,8 @@ footer {
 
 .incorrect {
     color: darkred;
+}
+
+.question_footer {
+    display: flex;
 }
