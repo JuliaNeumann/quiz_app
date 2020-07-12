@@ -15,9 +15,10 @@ class SubmissionController(@Autowired private val submissionRepository: Submissi
     fun getAllSubmissions() : List<Submission> = submissionRepository.findAll()
 
     @PostMapping("")
-    fun createSubmission(@Valid @RequestBody submission: Submission) : Submission = submissionRepository.save(submission)
+    fun createSubmission(@Valid @RequestBody submission: Submission) : Submission =
+            submissionRepository.save(submission)
 
-    @GetMapping("/aggregated")
-    // TODO: get by username
-    fun getAggregatedSubmission() : AggregatedUserSubmissions = AggregatedUserSubmissions("foo", submissionRepository.findAll())
+    @GetMapping("/aggregated/{name}")
+    fun getAggregatedSubmission(@PathVariable name: String) : AggregatedUserSubmissions =
+            AggregatedUserSubmissions(name, submissionRepository.findAll())
 }

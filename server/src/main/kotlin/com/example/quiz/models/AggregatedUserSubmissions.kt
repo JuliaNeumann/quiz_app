@@ -5,9 +5,10 @@ class AggregatedUserSubmissions(val username: String, private val submissions: L
 
     private fun computeAverageScore(): Double {
         var sumAverages = 0.0;
-        this.submissions.forEach {
+        val submissionsByUser = this.submissions.filter { it.username == this.username }
+        submissionsByUser.forEach {
             sumAverages += it.score.toDouble() / it.numQuestions;
         }
-        return sumAverages / this.submissions.size;
+        return sumAverages / submissionsByUser.size;
     }
 }
